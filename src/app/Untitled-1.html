@@ -1,0 +1,40 @@
+<table class="user-table">
+  <thead>
+    <tr>
+      <th >Name</th>
+      <th >Email</th>
+      <th >Phone</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.name }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.phone }}</td>
+      <td><button (click)="openModal(user)">Edit</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="selectedUser" class="edit-modal">
+  <h2>Edit User</h2>
+  <form (ngSubmit)="saveUser()">
+    <div>
+      <label>Name</label>
+      <input [(ngModel)]="selectedUser.name" name="name" required>
+    </div>
+    <div>
+      <label>Email</label>
+      <input [(ngModel)]="selectedUser.email" name="email" required>
+    </div>
+    <div>
+      <label>Phone</label>
+      <input [(ngModel)]="selectedUser.phone" name="phone" required>
+    </div>
+    <div class="modal-actions">
+      <button type="submit">Save</button>
+      <button type="button" (click)="closeModal()">Cancel</button>
+    </div>
+  </form>
+</div>
